@@ -1,0 +1,15 @@
+# Node dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment variables
+.env
+
+# Jest coverage reports
+coverage/
+
+# IDE / Editor files
+.vscode/
+.idea/

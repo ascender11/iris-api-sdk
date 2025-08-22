@@ -1,0 +1,69 @@
+{
+  "name": "iris-api-sdk",
+  "version": "1.0.0",
+  "description": "TypeScript library for interacting with the Iris API",
+  "license": "MIT",
+  "author": {
+    "name": "Icky",
+    "url": "https://github.com/ascender11"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "dev": "tsc -w",
+    "start": "node ./dist/main.js",
+    "test": "jest --config=jest.config.ts",
+    "test:e2e": "jest --config=jest.e2e.config.ts --runInBand",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "lint": "eslint . --ext .ts,.js",
+    "lint:fix": "eslint . --ext .ts,.js --fix",
+    "format": "prettier --write '**/*.{ts,js}'",
+    "format:check": "prettier --check '**/*.{ts,js}'",
+    "prepare": "husky"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ascender11/iris-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ascender11/iris-api/issues"
+  },
+  "homepage": "https://github.com/ascender11/iris-api#readme",
+  "keywords": [
+    "iris",
+    "api",
+    "typescript",
+    "sdk"
+  ],
+  "devDependencies": {
+    "@eslint/js": "^9.34.0",
+    "@types/jest": "^30.0.0",
+    "commitlint": "^19.8.1",
+    "eslint": "^9.34.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "husky": "^9.1.7",
+    "jest": "^30.0.5",
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.6.2",
+    "ts-jest": "^29.4.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.40.0"
+  }
+}
