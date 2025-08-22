@@ -1,0 +1,1 @@
+export { IrisApiEndpoints } from './endpoints';
