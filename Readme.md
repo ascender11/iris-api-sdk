@@ -1,29 +1,62 @@
-# Iris API Client
+# 🌸 Iris API SDK
 
-TypeScript SDK для работы с Iris API.
+[![npm version](https://img.shields.io/npm/v/iris-api-sdk)](https://www.npmjs.com/package/iris-api-sdk)
 
-## Установка
+TypeScript SDK for interacting with the **Iris API**.
+
+---
+
+## 💾 Installation
 
 ```bash
-npm install
+npm install iris-api-sdk
 ```
 
-## Сборка
+## 🏗 Build
 
 ```bash
 npm run build
 ```
 
-## Тестирование
+## 🚀 Usage
 
-```bash
-npm run test
+```ts
+import { IrisAPI } from 'iris-api-sdk';
+
+const iris = new IrisAPI(BOT_ID, IRIS_TOKEN);
+
+// 🍬 Sweets module
+await iris.sweets.give({ userId: 123, amount: 10 });
+const sweetsHistory = await iris.sweets.history();
+
+// 🪙 Gold module
+await iris.gold.give({ userId: 123, amount: 5 });
+const goldHistory = await iris.gold.history();
+
+// 👛 Pocket module
+await iris.pocket.enable();
+await iris.pocket.denyUser({ user_id: 456 });
+
+// 💰 Balance module
+const balance = await iris.balance.get();
+console.log(balance);
 ```
 
-## Структура проекта
+## 🛠 Features
 
-```bash
-src/     # исходный код
-tests/   # тесты
-dist/    # сборка
-```
+
+| Module     | Method      | Parameters             | Returns                 | Description                                         |
+| ---------- | ----------- | ---------------------- | ----------------------- | --------------------------------------------------- |
+| 🍬 Sweets  | `give`      | `SweetsGiveParams`     | `SweetsGiveResponse`    | Gives sweets to a specified user                    |
+| 🍬 Sweets  | `history`   | `SweetsHistoryParams?` | `SweetsHistoryResponse` | Retrieves the sweets transaction history            |
+| 🪙 Gold    | `give`      | `GoldGiveParams`       | `GoldGiveResponse`      | Gives gold to a specified user                      |
+| 🪙 Gold    | `history`   | `GoldHistoryParams?`   | `GoldHistoryResponse`   | Retrieves the gold transaction history              |
+| 👛 Pocket  | `enable`    | —                      | `EnableResponse`        | Enables the user's pocket for transfers or viewing  |
+| 👛 Pocket  | `disable`   | —                      | `DisableResponse`       | Disables the user's pocket for transfers or viewing |
+| 👛 Pocket  | `allowAll`  | —                      | `AllowAllResponse`      | Allows all users to perform transfers               |
+| 👛 Pocket  | `denyAll`   | —                      | `DenyAllResponse`       | Denies all users from performing transfers          |
+| 👛 Pocket  | `allowUser` | `AllowUserParams`      | `AllowUserResponse`     | Allows a specific user to perform transfers         |
+| 👛 Pocket  | `denyUser`  | `DenyUserParams`       | `DenyUserResponse`      | Denies a specific user from performing transfers    |
+| 💰 Balance | `get`       | —                      | `BalanceResponse`       | Retrieves the current balance of the user           |
+
+
