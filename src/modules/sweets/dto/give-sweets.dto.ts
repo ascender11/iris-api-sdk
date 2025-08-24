@@ -1,10 +1,16 @@
-export class SweetsGiveParamsDto {
-  user_id: number;
-  sweets: number;
-  without_donate_score?: boolean;
-  comment?: string;
-}
+import { z } from 'zod';
 
-export class SweetsGiveResponseDto {
-  result: boolean;
-}
+export const SweetsGiveParamsDtoSchema = z.object({
+  user_id: z.number().int(),
+  sweets: z.number(),
+  without_donate_score: z.boolean().optional(),
+  comment: z.string().optional(),
+});
+
+export type SweetsGiveParamsDto = z.infer<typeof SweetsGiveParamsDtoSchema>;
+
+export const SweetsGiveResponseDtoSchema = z.object({
+  result: z.boolean(),
+});
+
+export type SweetsGiveResponseDto = z.infer<typeof SweetsGiveResponseDtoSchema>;

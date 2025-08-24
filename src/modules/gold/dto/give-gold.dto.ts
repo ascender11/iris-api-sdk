@@ -1,10 +1,16 @@
-export class GoldGiveParamsDto {
-  user_id: number;
-  gold: number;
-  without_donate_score?: boolean;
-  comment?: string;
-}
+import { z } from 'zod';
 
-export class GoldGiveResponseDto {
-  result: boolean;
-}
+export const GoldGiveParamsDtoSchema = z.object({
+  user_id: z.number().int(),
+  gold: z.number(),
+  without_donate_score: z.boolean().optional(),
+  comment: z.string().max(128).optional(),
+});
+
+export type GoldGiveParamsDto = z.infer<typeof GoldGiveParamsDtoSchema>;
+
+export const GoldGiveResponseDtoShema = z.object({
+  result: z.boolean(),
+});
+
+export type GoldGiveResponseDto = z.infer<typeof GoldGiveResponseDtoShema>;

@@ -1,7 +1,13 @@
-export class AllowUserParamsDto {
-  user_id: number;
-}
+import { z } from 'zod';
 
-export class AllowUserResponseDto {
-  result: boolean;
-}
+export const AllowUserParamsDtoSchema = z.object({
+  user_id: z.number().int(),
+});
+
+export type AllowUserParamsDto = z.infer<typeof AllowUserParamsDtoSchema>;
+
+export const AllowUserResponseDtoSchema = z.object({
+  result: z.boolean(),
+});
+
+export type AllowUserResponseDto = z.infer<typeof AllowUserResponseDtoSchema>;
