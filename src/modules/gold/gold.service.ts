@@ -1,17 +1,35 @@
-import { IHttpClient } from 'src/client';
+import { IValidatedClient } from 'src/client/validated-client.interface';
 import { IrisApiEndpoints } from 'src/constants';
 
-import { GoldGiveParamsDto, GoldGiveResponseDto } from './dto/give-gold.dto';
-import { GoldHistoryParamsDto, GoldHistoryResponseDto } from './dto/history.dto';
+import {
+  GoldGiveParamsDto,
+  GoldGiveParamsDtoSchema,
+  GoldGiveResponseDto,
+  GoldGiveResponseDtoShema,
+} from './dto/give-gold.dto';
+import {
+  GoldHistoryParamsDto,
+  GoldHistoryParamsDtoSchema,
+  GoldHistoryResponseDto,
+  GoldHistoryResponseSchema,
+} from './dto/history.dto';
 
 export class GoldService {
-  constructor(private client: IHttpClient) {}
+  constructor(private client: IValidatedClient) {}
 
   async give(params: GoldGiveParamsDto): Promise<GoldGiveResponseDto> {
-    return this.client.get(IrisApiEndpoints.giveGold, params);
+    return this.client.get(IrisApiEndpoints.giveGold, {
+      params,
+      paramsSchema: GoldGiveParamsDtoSchema,
+      responseSchema: GoldGiveResponseDtoShema,
+    });
   }
 
   async history(params?: GoldHistoryParamsDto): Promise<GoldHistoryResponseDto> {
-    return this.client.get(IrisApiEndpoints.goldHistory, params);
+    return this.client.get(IrisApiEndpoints.goldHistory, {
+      params,
+      paramsSchema: GoldHistoryParamsDtoSchema,
+      responseSchema: GoldHistoryResponseSchema,
+    });
   }
 }

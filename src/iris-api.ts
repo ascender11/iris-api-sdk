@@ -1,4 +1,5 @@
 import { HttpClient, IHttpClient } from './client';
+import { ValidatedHttpClient } from './client/validated-http-client';
 import { SweetsService, GoldService, PocketService, BalanceService } from './modules';
 
 export interface IrisOptions {
@@ -16,10 +17,11 @@ export class IrisAPI {
     const { version = '0.1', client } = options;
     const baseUrl = `https://iris-tg.ru/api/${botId}_${irisToken}/v${version}`;
     const httpClient = client ?? new HttpClient(baseUrl);
+    const validatedClient = new ValidatedHttpClient(httpClient);
 
-    this.sweets = new SweetsService(httpClient);
-    this.gold = new GoldService(httpClient);
-    this.pocket = new PocketService(httpClient);
-    this.balance = new BalanceService(httpClient);
+    this.sweets = new SweetsService(validatedClient);
+    this.gold = new GoldService(validatedClient);
+    this.pocket = new PocketService(validatedClient);
+    this.balance = new BalanceService(validatedClient);
   }
 }

@@ -1,12 +1,14 @@
-import { IHttpClient } from 'src/client';
+import { IValidatedClient } from 'src/client';
 import { IrisApiEndpoints } from 'src/constants';
 
-import { GetBalanceResponseDto } from './dto/get-balance.dto';
+import { GetBalanceResponseDto, GetBalanceResponseDtoSchema } from './dto/get-balance.dto';
 
 export class BalanceService {
-  constructor(private client: IHttpClient) {}
+  constructor(private client: IValidatedClient) {}
 
   async get(): Promise<GetBalanceResponseDto> {
-    return this.client.get(IrisApiEndpoints.balance);
+    return this.client.get(IrisApiEndpoints.balance, {
+      responseSchema: GetBalanceResponseDtoSchema,
+    });
   }
 }
